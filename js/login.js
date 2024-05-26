@@ -47,7 +47,7 @@ function redirecionaPagina(pagina) {
 
 function atualizaMenu() {
     var url_atual = window.location.href;
-    let baseUrl = "https://sistemacompleto-teste.vercel.app/";
+    let baseUrl = "https://b2system.vercel.app/";
     if (url_atual.includes("http://127.0.0.1:5500/")) {
         baseUrl = "http://127.0.0.1:5500/";
     }
@@ -163,7 +163,7 @@ function gravaRegistroLogin() {
         usuativo: 1,
     };
 
-    callApi("POST", "usuarios", body, function (data) {
+    callApi("POST", "usuarios", body, function(data) {
         // pega os dados de token retornados e seta na sessao do navegador
         sessionStorage.setItem("token_logado", data.usutoken);
 
@@ -191,7 +191,7 @@ function resetsenha() {
         ususenha: senha,
     };
 
-    callApi("POST", "resetpassword", body, function (data) {
+    callApi("POST", "resetpassword", body, function(data) {
         // Remove all saved data from sessionStorage
         sessionStorage.clear();
 
