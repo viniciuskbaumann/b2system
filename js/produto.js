@@ -11,9 +11,9 @@ function listarProdutosConsulta() {
         filtroCodigo = "/?id=" + codigo;
     }
 
-    const rota = "produtos" + filtroCodigo;
+    const rota = "produto" + filtroCodigo;
 
-    callApi(method, rota, function (data) {
+    callApi(method, rota, function(data) {
         console.log("Dados da API:");
         console.log(data);
 
@@ -29,7 +29,7 @@ function carregaTabelaConsulta(aListaProdutos) {
 
     const tabela = document.querySelector("#tabela-produtos");
     tabela.innerHTML = "";
-    aListaProdutos.forEach(function (data, key) {
+    aListaProdutos.forEach(function(data, key) {
         const codigo = data.id;
         const descricao = data.descricao;
         const preco = data.preco;
@@ -62,17 +62,18 @@ function carregaTabelaConsulta(aListaProdutos) {
 
 // CONSULTA DE PRODUTOS - ALTERAÇÃO/EXCLUSÃO, INSERÇÃO
 function getAcoes(codigo) {
-    return (
-        `<div class="acoes">
-                <button onclick="alterarProduto(` +
+    let acoes = '<div class="btn">';
+    acoes =
+        '<button class="btn btn-consulta" onclick="alterarProduto(" + codigo + ")">Alterar</button>';
+
+    acoes +=
+        '<button class="btn btn-consulta" style="background-color:tomato;color:#fff;" onclick="excluirProduto(' +
         codigo +
-        `)">Alterar</button>
-                <button onclick="excluirProduto(` +
-        codigo +
-        `)">Excluir</button>                
-            </div>
-    `
-    );
+        ')">Excluir</button>';
+
+    acoes += "</div>";
+
+    return acoes;
 }
 
 function fecharModal() {
@@ -85,7 +86,7 @@ function incluirProduto() {
     const modal = document.querySelector("dialog");
     modal.showModal();
     modal.style.display = "block";
-    proximoId(function (codigo) {
+    proximoId(function(codigo) {
         document.querySelector("#codigo").value = codigo;
     });
 }
@@ -99,7 +100,7 @@ function proximoId(fn = false) {
 
     const method = "GET";
     const rota = "produtos";
-    callApi(method, rota, function (data) {
+    callApi(method, rota, function(data) {
         totalProdutos = data.length;
 
         totalProdutos = parseInt(totalProdutos + 1);
@@ -130,7 +131,7 @@ function confirmarModal() {
         callApiPost(
             method,
             rota,
-            function (data) {
+            function(data) {
                 console.log("Produto gravado!" + data);
                 // listarProdutosConsulta();
             },
@@ -156,7 +157,7 @@ function confirmarModal() {
         callApiPost(
             method,
             rota,
-            function (data) {
+            function(data) {
                 console.log("Produto gravado!" + data);
                 listarProdutosConsulta();
             },
@@ -179,10 +180,10 @@ function alterarProduto(codigo) {
     const method = "GET";
     // http://localhost:3000/produtos/?id=2
     const rota = "produtos/?id=" + codigo;
-    callApi(method, rota, function (aListaProdutos) {
+    callApi(method, rota, function(aListaProdutos) {
         console.log(aListaProdutos);
 
-        aListaProdutos.forEach(function (data, key) {
+        aListaProdutos.forEach(function(data, key) {
             const codigo = data.id;
 
             console.log("codigo da alteracao:" + codigo);

@@ -1,12 +1,13 @@
 function getHeaders() {
     return {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        "Content-Type": "application/json",
+        Accept: "application/json",
     };
 }
 
 function callApi(method, rota, fn = false) {
-    const url = "http://localhost:3000/" + rota;
+    // const url = "http://localhost:3000/" + rota;
+    const url = "http://127.0.0.1:8080/api/v1/" + rota;
     try {
         fetch(url, {
                 method: method, // *GET, POST, PUT, DELETE, etc.
@@ -15,15 +16,16 @@ function callApi(method, rota, fn = false) {
                 credentials: "same-origin", // include, *same-origin, omit
                 headers: getHeaders(),
                 redirect: "follow", // manual, *follow, error
-                referrerPolicy: "no-referrer"
-            }).then(response => response.json())
-            .then(data => {
+                referrerPolicy: "no-referrer",
+            })
+            .then((response) => response.json())
+            .then((data) => {
                 let oRetorno = JSON.stringify(data);
-                
+
                 console.log(data);
                 // Se existir a funcao, executa a funcao
                 // passando por parametro o retorno da API
-                if(fn){
+                if (fn) {
                     // executando a funcao
                     fn(data);
                 }
@@ -44,15 +46,16 @@ function callApiPost(method, rota, fn = false, body = false) {
                 headers: getHeaders(),
                 redirect: "follow", // manual, *follow, error
                 referrerPolicy: "no-referrer",
-                body:JSON.stringify(body)
-            }).then(response => response.json())
-            .then(data => {
+                body: JSON.stringify(body),
+            })
+            .then((response) => response.json())
+            .then((data) => {
                 let oRetorno = JSON.stringify(data);
-                
+
                 console.log(data);
                 // Se existir a funcao, executa a funcao
                 // passando por parametro o retorno da API
-                if(fn){
+                if (fn) {
                     // executando a funcao
                     fn(data);
                 }
