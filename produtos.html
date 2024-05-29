@@ -64,15 +64,19 @@
                                     <div class="acoes-filtro">
                                         <select name="filtroConsulta" id="filtroConsulta"
                                             onChange="atualizaTipoConsulta()">
-                                            <option value="codigoConsulta" id="codigoConsulta" data-tipo="numerico">
+                                            <option value="codigoConsulta" id="codigoConsulta" data-tipo="numerico" selected>
                                                 Código
                                             </option>
                                             <option value="descricaoConsulta" id="descricaoConsulta" data-tipo="texto">
                                                 Descrição
                                             </option>
                                             <option value="dataCadastroConsulta" id="dataCadastroConsulta"
-                                                data-tipo="data" selected>
-                                                Descrição
+                                                data-tipo="data">
+                                                Preço
+                                            </option>
+                                            <option value="dataCadastroConsulta" id="dataCadastroConsulta"
+                                                data-tipo="data">
+                                                Estoque
                                             </option>
                                         </select>
                                     </div>
@@ -85,7 +89,7 @@
                                     <input type="text" id="campoValor2" style="display: none;">
 
                                     <button class="btn btn-consulta"
-                                        onclick="listarProdutosConsulta()">Consultar</button>
+                                        onclick="executaConsulta()">Consultar</button>
                                 </div>
 
                                 <div class="acoes-consulta">

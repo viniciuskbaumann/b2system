@@ -11,8 +11,8 @@ function listarProdutosConsulta() {
         filtroCodigo = "/?id=" + codigo;
     }
 
-    const rota = "produtos" + filtroCodigo;
-
+    const rota = "produto" + filtroCodigo;
+    
     callApi(method, rota, function (data) {
         console.log("Dados da API:");
         console.log(data);
@@ -200,4 +200,27 @@ function alterarProduto(codigo) {
             document.querySelector("#ACAO").value = ACAO_ALTERACAO;
         });
     });
+}
+
+function executaConsulta() {
+    // Listando todos os produtos
+    const method = "POST";
+    const valor1 = parseInt(document.querySelector("#campoValor1").value);
+
+    console.log("codigo: " + valor1);
+
+    // FIXO, MUDAR CAMPO DINAMICO, DEPOIS
+    let body = {
+        campo:"id",
+        operador: "=",
+        valor1:valor1
+    }
+
+    const rota = "consultaproduto";
+    
+    callApiPost(method, rota, function (data) {
+        console.log("Dados da API:");
+        console.log(data);
+        carregaTabelaConsulta(data);
+    }, body);
 }

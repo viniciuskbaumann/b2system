@@ -6,7 +6,9 @@ function getHeaders() {
 }
 
 function callApi(method, rota, fn = false) {
-    const url = "http://localhost:3000/" + rota;
+    // const url = "http://localhost:3000/" + rota;
+    // CAMINHO DA API JAVA
+    const url = "http://localhost:8080/api/v1/" + rota;
     try {
         fetch(url, {
                 method: method, // *GET, POST, PUT, DELETE, etc.
@@ -34,7 +36,8 @@ function callApi(method, rota, fn = false) {
 }
 
 function callApiPost(method, rota, fn = false, body = false) {
-    const url = "http://localhost:3000/" + rota;
+    // const url = "http://localhost:3000/" + rota;
+    const url = "http://localhost:8080/api/v1/" + rota;
     try {
         fetch(url, {
                 method: method, // *GET, POST, PUT, DELETE, etc.
